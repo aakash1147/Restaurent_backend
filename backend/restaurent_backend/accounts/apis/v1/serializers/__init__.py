@@ -1,0 +1,3 @@
+from .user_serializer_v1 import UserSerializerV1, CreateUserSerializerV1
+from .adress_serializer_v1 import AddressSerializerV1
+from .registration_serializer_v1 import UserRegistrationSerializerV1

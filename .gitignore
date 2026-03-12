@@ -1,0 +1,104 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.log
+*.pot
+*.mo
+*.sqlite3
+*.db
+*.db-journal
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+*.DS_Store
+.env
+.venv
+venv/
+ENV/
+.envrc
+.idea/
+.vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+# Django
+*.log
+staticfiles/
+media/
+local_settings.py
+.env
+# VSCode
+.vscode/
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+Desktop.ini
+# Virtual environments
+venv*/
+ENV*/
+.venv*/
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+# mypy
+.mypy_cache/
+.dmypy.json
+# Pyre type checker
+.pyre/
+# pipenv
+Pipfile.lock
+# pytest
+.cache/
+# celery
+celerybeat-schedule
+# Sphinx documentation
+docs/_build/
+# PyInstaller
+*.manifest
+*.spec
+# Installer logs
+debug.log
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+# pyenv
+.python-version
+# pipenv
+Pipfile.lock
+# poetry
+poetry.lock
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+# pyright
+pyrightconfig.json
