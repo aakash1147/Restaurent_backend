@@ -16,6 +16,15 @@ export class LoadingService {
     this.loadingSubject.next(false);
   }
 
+  // Convenience methods
+  show(): void {
+    this.showLoading();
+  }
+
+  hide(): void {
+    this.hideLoading();
+  }
+
   isLoading(): boolean {
     return this.loadingSubject.value;
   }

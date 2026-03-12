@@ -1,4 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+/* ========================================
+   Global Styles with Material Design
+   ======================================== */
+
+// Import Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Import Angular Material Prebuilt Theme
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Material Design Fonts
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 *,
 *::before,

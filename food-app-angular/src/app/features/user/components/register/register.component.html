@@ -1,0 +1,164 @@
+<div class="register-container">
+  <mat-card class="register-card">
+    <mat-card-header class="register-header">
+      <mat-card-title>Create Account</mat-card-title>
+      <mat-card-subtitle>Join Food App - Start Ordering Today</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+        <!-- First Name -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            formControlName="firstName"
+            placeholder="John"
+            autocomplete="given-name"
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="getFirstNameError()">
+            {{ getFirstNameError() }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Last Name -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            formControlName="lastName"
+            placeholder="Doe"
+            autocomplete="family-name"
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="getLastNameError()">
+            {{ getLastNameError() }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email Address</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="john@example.com"
+            autocomplete="email"
+          />
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="getEmailError()">
+            {{ getEmailError() }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Phone -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone Number</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+            placeholder="1234567890"
+            autocomplete="tel"
+          />
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="getPhoneError()">
+            {{ getPhoneError() }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- User Type -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>User Type</mat-label>
+          <mat-select formControlName="userType">
+            <mat-option value="customer">Customer</mat-option>
+            <mat-option value="restaurant">Restaurant</mat-option>
+            <mat-option value="delivery">Delivery Partner</mat-option>
+          </mat-select>
+          <mat-icon matSuffix>business</mat-icon>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="Enter a strong password"
+            autocomplete="new-password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility()"
+            type="button"
+            class="toggle-password"
+          >
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="getPasswordError()">
+            {{ getPasswordError() }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Confirm Password -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            formControlName="confirmPassword"
+            placeholder="Repeat your password"
+            autocomplete="new-password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="toggleConfirmPasswordVisibility()"
+            type="button"
+            class="toggle-password"
+          >
+            <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="getConfirmPasswordError()">
+            {{ getConfirmPasswordError() }}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Terms Checkbox -->
+        <mat-checkbox formControlName="agreeToTerms" class="terms-checkbox">
+          I agree to the
+          <a href="#" class="terms-link">Terms & Conditions</a>
+          and
+          <a href="#" class="terms-link">Privacy Policy</a>
+        </mat-checkbox>
+
+        <!-- Sign Up Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="full-width register-button"
+          [disabled]="isLoading || registerForm.invalid"
+        >
+          <mat-icon *ngIf="!isLoading">person_add</mat-icon>
+          <span *ngIf="!isLoading">Create Account</span>
+          <mat-spinner
+            *ngIf="isLoading"
+            diameter="24"
+            class="button-spinner"
+          ></mat-spinner>
+          <span *ngIf="isLoading">Creating Account...</span>
+        </button>
+
+        <!-- Sign In Link -->
+        <div class="signin-link">
+          <span>Already have an account?</span>
+          <a routerLink="/auth/login" class="link">Sign In</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

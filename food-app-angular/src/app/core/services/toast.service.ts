@@ -31,6 +31,23 @@ export class ToastService {
     this.showToast(message, 'info', duration);
   }
 
+  // Convenience methods
+  success(message: string, duration: number = 3000): void {
+    this.showSuccess(message, duration);
+  }
+
+  error(message: string, duration: number = 5000): void {
+    this.showError(message, duration);
+  }
+
+  warning(message: string, duration: number = 4000): void {
+    this.showWarning(message, duration);
+  }
+
+  info(message: string, duration: number = 3000): void {
+    this.showInfo(message, duration);
+  }
+
   private showToast(message: string, type: 'success' | 'error' | 'warning' | 'info', duration: number): void {
     const id = Date.now().toString();
     const toast: Toast = { id, message, type, duration };

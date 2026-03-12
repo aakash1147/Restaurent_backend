@@ -20,7 +20,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: LoginRequest): Observable<AuthResponse> {
+  login(email: string, password: string): Observable<AuthResponse> {
+    const credentials: LoginRequest = { email, password };
     return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/login`, credentials).pipe(
       tap(response => this.setSession(response))
     );
@@ -41,6 +42,19 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/refresh`, { token }).pipe(
       tap(response => this.setSession(response))
     );
+  }
+
+  // Password Reset Methods
+  requestPasswordReset(email: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/auth/request-password-reset`, { email });
+  }
+
+  verifyResetCode(email: string, code: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/auth/verify-reset-code`, { email, code });
+  }
+
+  resetPassword(data: { email: string; newPassword: string }): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/auth/reset-password`, data);
   }
 
   getCurrentUser(): User | null {
