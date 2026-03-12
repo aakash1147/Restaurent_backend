@@ -53,4 +53,35 @@ export class RestaurantService {
   getRestaurantMenu(restaurantId: string): Observable<ApiResponse<any>> {
     return this.http.get<ApiResponse<any>>(`${environment.apiUrl}/restaurants/${restaurantId}/menu`);
   }
+
+  // Aliases for NgRx effects compatibility
+  getRestaurants(page: number = 1, limit: number = 10): Observable<PaginatedResponse<Restaurant>> {
+    return this.getAllRestaurants(page, limit);
+  }
+
+  getRestaurantDetail(id: string): Observable<ApiResponse<Restaurant>> {
+    return this.getRestaurantById(id);
+  }
+
+  filterRestaurants(filters: any): Observable<PaginatedResponse<Restaurant>> {
+    let params = new HttpParams();
+    
+    if (filters.cuisineType) {
+      params = params.set('cuisine', filters.cuisineType);
+    }
+    if (filters.priceRange) {
+      params = params.set('priceRange', filters.priceRange);
+    }
+    if (filters.rating) {
+      params = params.set('minRating', filters.rating);
+    }
+    if (filters.deliveryTime) {
+      params = params.set('maxDeliveryTime', filters.deliveryTime);
+    }
+    
+    return this.http.get<PaginatedResponse<Restaurant>>(
+      `${environment.apiUrl}/restaurants/filter`,
+      { params }
+    );
+  }
 }

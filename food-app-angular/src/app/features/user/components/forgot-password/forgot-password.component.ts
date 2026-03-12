@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { LoadingService } from '../../../../core/services/loading.service';
@@ -23,8 +23,7 @@ import { LoadingService } from '../../../../core/services/loading.service';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatCardModule,
-    RouterLink
+    MatCardModule
   ],
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss']
