@@ -1,9 +1,0 @@
-<div class="toast-container">
-  <div
-    *ngFor="let toast of (toasts$ | async)"
-    [ngClass]="'toast toast-' + toast.type"
-    class="toast-item"
-  >
-    {{ toast.message }}
-  </div>
-</div>
