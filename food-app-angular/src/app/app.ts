@@ -6,7 +6,7 @@ import { MaterialModule } from './material.module';
   selector: 'app-root',
   imports: [RouterOutlet, MaterialModule],
   templateUrl: './app.html',
-  styleUrl: './app.sass'
+  styleUrl: './app.scss'
 })
 export class App {
   protected readonly title = signal('food-app-angular');
