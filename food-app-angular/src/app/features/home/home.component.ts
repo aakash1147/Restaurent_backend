@@ -13,6 +13,17 @@ import { Restaurant } from '../../core/models';
 })
 export class HomeComponent implements OnInit {
   restaurants: Restaurant[] = [];
+  categories: { name: string }[] = [
+    { name: 'Vegan' },
+    { name: 'Chef Picks' },
+    { name: 'Protein' },
+    { name: 'Citrus' },
+    { name: 'Family Meals' },
+    { name: 'Chef Specials' },
+    { name: 'Power Protein' },
+    { name: 'Juice Bar' },
+    { name: 'Green Bowls' }
+  ];
 
   constructor(private restaurantService: RestaurantService) {}
 

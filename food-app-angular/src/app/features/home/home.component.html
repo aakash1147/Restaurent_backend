@@ -1,33 +1,77 @@
 <div class="home-container">
   <section class="hero">
-    <h1>Welcome to Food App</h1>
-    <p>Discover delicious food from your favorite restaurants</p>
-    <input
-      type="text"
-      placeholder="Search restaurants, food..."
-      class="search-box"
-      (input)="onSearch($event)"
-    />
+    <div class="hero-inner">
+      <div class="brand">QUICKMUNCH</div>
+      <div class="search-area">
+        <div class="location-pill">Brooklyn, NY ▾</div>
+        <div class="search-box-wrapper">
+          <input
+            type="text"
+            placeholder="Search restaurants, food or cuisines"
+            class="search-box"
+            (input)="onSearch($event)"
+          />
+        </div>
+        <div class="pickup-toggle">Pickup</div>
+      </div>
+    </div>
   </section>
 
-  <section class="featured-restaurants">
-    <h2>Featured Restaurants</h2>
-    <div class="restaurants-grid">
-      <div
-        *ngFor="let restaurant of restaurants"
-        class="restaurant-card"
-        [routerLink]="['/restaurants', restaurant.id]"
-      >
-        <img [src]="restaurant.bannerImage" [alt]="restaurant.name" />
-        <div class="card-content">
-          <h3>{{ restaurant.name }}</h3>
-          <p>{{ restaurant.cuisines.join(', ') }}</p>
-          <div class="card-footer">
-            <span class="rating">⭐ {{ restaurant.rating }}</span>
-            <span class="delivery">{{ restaurant.deliveryTime }} min</span>
-          </div>
+    <div class="categories">
+      <div class="categories-inner">
+        <div class="category-chip" *ngFor="let c of categories">
+          <div class="icon">🍔</div>
+          <div class="label">{{ c.name }}</div>
         </div>
       </div>
+    </div>
+
+  <section class="trending">
+    <div class="section-header">
+      <h2>Trending Cuisines Slider</h2>
+      <div class="meta">12 RESTAURANT CARDS IN A LIVE LOOP</div>
+    </div>
+
+    <div class="trending-slider" role="list">
+      <div class="trend-card" *ngFor="let restaurant of restaurants" [routerLink]="['/restaurants', restaurant.id]" role="listitem">
+        <div class="media">
+          <img [src]="restaurant.bannerImage || '/assets/images/placeholder-restaurant.jpg'" [alt]="restaurant.name" />
+          <div class="badge">{{ restaurant.reviewCount ? (restaurant.reviewCount + ' reviews') : 'Popular' }}</div>
+          <button class="fav">♡</button>
+        </div>
+        <div class="content">
+          <h3>{{ restaurant.name }}</h3>
+          <p class="meta">{{ restaurant.cuisines.join(', ') || 'Various' }}</p>
+          <div class="stats">
+            <div class="time">{{ restaurant.deliveryTime }} min</div>
+            <div class="rating">★ {{ restaurant.rating }}</div>
+          </div>
+          <div class="icons">🍃 🌶️ 👨‍🍳 🥚 🍋</div>
+        </div>
+      </div>
+    <div class="trending">
+      <div class="section-header">
+        <h2>Trending near you</h2>
+        <div class="meta">See all</div>
+      </div>
+      <div class="trending-slider">
+        <a class="trend-card" *ngFor="let r of restaurants" [routerLink]="['/restaurant', r.id]">
+          <div class="media">
+            <img [src]="r.bannerImage || '/assets/images/placeholder-restaurant.jpg'" alt="{{r.name}}" />
+            <div class="badge">{{ r.reviewCount ? (r.reviewCount + ' reviews') : 'Popular' }}</div>
+            <button class="fav">♡</button>
+          </div>
+          <div class="content">
+            <h3>{{ r.name }}</h3>
+            <div class="meta">{{ r.cuisines.join(', ') || 'Various' }} • {{ r.deliveryTime || '—' }}</div>
+            <div class="stats">
+              <div class="rating">{{ r.rating || '—' }}</div>
+              <div class="icons">💳 • 🛵</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
     </div>
   </section>
 </div>
