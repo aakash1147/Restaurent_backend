@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -7,6 +7,9 @@ import * as RestaurantActions from './restaurants.actions';
 
 @Injectable()
 export class RestaurantEffects {
+  private readonly actions$ = inject(Actions);
+  private readonly restaurantService = inject(RestaurantService);
+
   loadRestaurants$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RestaurantActions.loadRestaurants),
@@ -63,8 +66,4 @@ export class RestaurantEffects {
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private restaurantService: RestaurantService
-  ) {}
 }
