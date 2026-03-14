@@ -10,11 +10,11 @@ export interface RestaurantsState extends EntityState<Restaurant> {
   filters: any;
 }
 
-export const adapter: EntityAdapter<Restaurant> = createEntityAdapter<Restaurant>({
+export const restaurantsAdapter: EntityAdapter<Restaurant> = createEntityAdapter<Restaurant>({
   selectId: (restaurant: Restaurant) => restaurant.id
 });
 
-export const initialRestaurantsState: RestaurantsState = adapter.getInitialState({
+export const initialRestaurantsState: RestaurantsState = restaurantsAdapter.getInitialState({
   selectedId: null,
   isLoading: false,
   error: null,
@@ -30,7 +30,7 @@ export const restaurantsReducer = createReducer(
     error: null
   })),
   on(RestaurantActions.loadRestaurantsSuccess, (state: RestaurantsState, { restaurants }: { restaurants: Restaurant[] }) =>
-    adapter.setAll(restaurants, { ...state, isLoading: false })
+    restaurantsAdapter.setAll(restaurants, { ...state, isLoading: false })
   ),
   on(RestaurantActions.loadRestaurantsFailure, (state: RestaurantsState, { error }: { error: string }) => ({
     ...state,
@@ -45,7 +45,7 @@ export const restaurantsReducer = createReducer(
     error: null
   })),
   on(RestaurantActions.loadRestaurantDetailSuccess, (state: RestaurantsState, { restaurant }: { restaurant: Restaurant }) =>
-    adapter.upsertOne(restaurant, { ...state, isLoading: false })
+    restaurantsAdapter.upsertOne(restaurant, { ...state, isLoading: false })
   ),
   on(RestaurantActions.loadRestaurantDetailFailure, (state: RestaurantsState, { error }: { error: string }) => ({
     ...state,
@@ -59,7 +59,7 @@ export const restaurantsReducer = createReducer(
     error: null
   })),
   on(RestaurantActions.searchRestaurantsSuccess, (state: RestaurantsState, { restaurants }: { restaurants: Restaurant[] }) =>
-    adapter.setAll(restaurants, { ...state, isLoading: false })
+    restaurantsAdapter.setAll(restaurants, { ...state, isLoading: false })
   ),
   on(RestaurantActions.searchRestaurantsFailure, (state: RestaurantsState, { error }: { error: string }) => ({
     ...state,
@@ -74,7 +74,7 @@ export const restaurantsReducer = createReducer(
     error: null
   })),
   on(RestaurantActions.filterRestaurantsSuccess, (state: RestaurantsState, { restaurants }: { restaurants: Restaurant[] }) =>
-    adapter.setAll(restaurants, { ...state, isLoading: false })
+    restaurantsAdapter.setAll(restaurants, { ...state, isLoading: false })
   ),
   on(RestaurantActions.filterRestaurantsFailure, (state: RestaurantsState, { error }: { error: string }) => ({
     ...state,
@@ -88,4 +88,4 @@ export const {
   selectEntities: selectRestaurantEntities,
   selectAll: selectAllRestaurants,
   selectTotal: selectRestaurantTotal
-} = adapter.getSelectors();
+} = restaurantsAdapter.getSelectors();

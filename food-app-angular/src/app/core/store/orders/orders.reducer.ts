@@ -9,11 +9,11 @@ export interface OrdersState extends EntityState<Order> {
   error: string | null;
 }
 
-export const adapter: EntityAdapter<Order> = createEntityAdapter<Order>({
+export const ordersAdapter: EntityAdapter<Order> = createEntityAdapter<Order>({
   selectId: (order: Order) => order.id
 });
 
-export const initialOrdersState: OrdersState = adapter.getInitialState({
+export const initialOrdersState: OrdersState = ordersAdapter.getInitialState({
   selectedId: null,
   isLoading: false,
   error: null
@@ -28,7 +28,7 @@ export const ordersReducer = createReducer(
     error: null
   })),
   on(OrdersActions.loadOrdersSuccess, (state, { orders }) =>
-    adapter.setAll(orders, { ...state, isLoading: false })
+    ordersAdapter.setAll(orders, { ...state, isLoading: false })
   ),
   on(OrdersActions.loadOrdersFailure, (state, { error }) => ({
     ...state,
@@ -43,7 +43,7 @@ export const ordersReducer = createReducer(
     error: null
   })),
   on(OrdersActions.loadOrderDetailSuccess, (state, { order }) =>
-    adapter.upsertOne(order, { ...state, isLoading: false })
+    ordersAdapter.upsertOne(order, { ...state, isLoading: false })
   ),
   on(OrdersActions.loadOrderDetailFailure, (state, { error }) => ({
     ...state,
@@ -57,7 +57,7 @@ export const ordersReducer = createReducer(
     error: null
   })),
   on(OrdersActions.createOrderSuccess, (state, { order }) =>
-    adapter.addOne(order, { ...state, isLoading: false })
+    ordersAdapter.addOne(order, { ...state, isLoading: false })
   ),
   on(OrdersActions.createOrderFailure, (state, { error }) => ({
     ...state,
@@ -70,7 +70,7 @@ export const ordersReducer = createReducer(
     isLoading: true
   })),
   on(OrdersActions.cancelOrderSuccess, (state: OrdersState, { id }: { id: string }) =>
-    adapter.updateOne({ id, changes: { status: 'cancelled' as any } }, { ...state, isLoading: false })
+    ordersAdapter.updateOne({ id, changes: { status: 'cancelled' as any } }, { ...state, isLoading: false })
   ),
   on(OrdersActions.cancelOrderFailure, (state, { error }) => ({
     ...state,
@@ -83,7 +83,7 @@ export const ordersReducer = createReducer(
     isLoading: true
   })),
   on(OrdersActions.trackOrderStatusSuccess, (state, { order }) =>
-    adapter.upsertOne(order, { ...state, isLoading: false })
+    ordersAdapter.upsertOne(order, { ...state, isLoading: false })
   ),
   on(OrdersActions.trackOrderStatusFailure, (state, { error }) => ({
     ...state,
@@ -97,4 +97,4 @@ export const {
   selectEntities: selectOrderEntities,
   selectAll: selectAllOrders,
   selectTotal: selectOrderTotal
-} = adapter.getSelectors();
+} = ordersAdapter.getSelectors();

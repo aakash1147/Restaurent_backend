@@ -2,8 +2,8 @@
    Global Styles with Material Design
    ======================================== */
 
-// Import Bootstrap
-@import 'bootstrap/scss/bootstrap';
+// Import Bootstrap (Sass module system)
+@use 'bootstrap' as *;
 
 // Import Angular Material Prebuilt Theme
 @import '@angular/material/prebuilt-themes/indigo-pink.css';

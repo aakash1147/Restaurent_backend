@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { User } from '../../core/models';
-import { selectCurrentUser, selectIsAuthenticated } from '../../core/store/auth/auth.selectors';
-import { logout } from '../../core/store/auth/auth.actions';
+import { User } from '../../../core/models';
+import { selectCurrentUser, selectIsAuthenticated } from '../../../core/store/auth/auth.selectors';
+import { logout } from '../../../core/store/auth/auth.actions';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDividerModule
   ],
   template: `
     <mat-toolbar class="app-header">

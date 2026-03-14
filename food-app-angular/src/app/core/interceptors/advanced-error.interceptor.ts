@@ -26,7 +26,7 @@ export class AdvancedErrorInterceptor implements HttpInterceptor {
     this.errorLogger.logError({
       status: error.status,
       message: errorMessage,
-      url: error.url,
+      url: error.url ?? undefined,
       timestamp: new Date(),
       details: error.error
     });
