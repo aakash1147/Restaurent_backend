@@ -3,11 +3,23 @@
     <div class="logo">
       <h1>🍔 Food App</h1>
     </div>
+
     <ul class="nav-menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#restaurants">Restaurants</a></li>
       <li><a href="#orders">Orders</a></li>
       <li><a href="#profile">Profile</a></li>
     </ul>
+
+    <div class="navbar-actions">
+      <button
+        mat-icon-button
+        type="button"
+        aria-label="Toggle theme"
+        (click)="toggleTheme()"
+      >
+        <mat-icon>{{ (isDarkTheme$ | async) ? 'dark_mode' : 'light_mode' }}</mat-icon>
+      </button>
+    </div>
   </div>
 </nav>

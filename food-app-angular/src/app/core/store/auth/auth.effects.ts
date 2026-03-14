@@ -9,10 +9,15 @@ import * as AuthActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-  private readonly actions$ = inject(Actions);
-  private readonly authService = inject(AuthService);
-  private readonly toastService = inject(ToastService);
-  private readonly router = inject(Router);
+  private get actions$(): Actions {
+    return inject(Actions);
+  }
+
+  constructor(
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService,
+    private readonly router: Router
+  ) {}
 
   login$ = createEffect(() =>
     this.actions$.pipe(

@@ -13,6 +13,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { LoadingService } from '../../../../core/services/loading.service';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-register',
@@ -38,7 +39,6 @@ export class RegisterComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
   isLoading = false;
-  termsAccepted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -60,8 +60,8 @@ export class RegisterComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required],
-      userType: ['customer', Validators.required],
-      agreeToTerms: [false, Validators.requiredTrue]
+      // userType: ['customer', Validators.required],
+      rememberMe: [false]
     }, {
       validators: this.passwordMatchValidator
     });
@@ -94,6 +94,10 @@ export class RegisterComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
+  signInWith(provider: 'google' | 'facebook'): void {
+    window.location.href = `${environment.apiUrl}/auth/${provider}`;
+  }
+
   toggleConfirmPasswordVisibility(): void {
     this.hideConfirmPassword = !this.hideConfirmPassword;
   }
@@ -104,10 +108,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    if (!this.registerForm.get('agreeToTerms')?.value) {
-      this.toastService.error('You must agree to the terms and conditions');
-      return;
-    }
 
     this.isLoading = true;
     this.loadingService.show();

@@ -73,30 +73,31 @@ $food-app-dark-theme: mat.define-dark-theme((
 // =============================================
 // 4) Helper mixin (CSS variables + component theming)
 // =============================================
-@mixin food-app-theme($theme) {
-  // Material component theme
-  @include matTheme.all-component-themes($theme);
+// Applies the given Angular Material theme within a specific body class.
+@mixin food-app-theme($theme, $theme-class) {
+  body.#{$theme-class} {
+    // Material component theme
+    @include matTheme.all-component-themes($theme);
 
-  // Custom app-level variables (optional)
-  $color-config: mat.get-color-config($theme);
-  $primary-palette: map.get($color-config, primary);
-  $accent-palette: map.get($color-config, accent);
-  $warn-palette: map.get($color-config, warn);
-  $background-palette: map.get($color-config, background);
-  $foreground-palette: map.get($color-config, foreground);
+    // Custom app-level variables (optional)
+    $color-config: mat.get-color-config($theme);
+    $primary-palette: map.get($color-config, primary);
+    $accent-palette: map.get($color-config, accent);
+    $warn-palette: map.get($color-config, warn);
+    $background-palette: map.get($color-config, background);
+    $foreground-palette: map.get($color-config, foreground);
 
-  :root {
     --app-primary: #{mat.get-color-from-palette($primary-palette, 500)};
     --app-accent: #{mat.get-color-from-palette($accent-palette, 200)};
     --app-warn: #{mat.get-color-from-palette($warn-palette, 500)};
-  }
 
-  body {
-    background-color: mat.get-color-from-palette($background-palette, default);
-    color: mat.get-color-from-palette($foreground-palette, default);
-    font-family: $font-family;
+    background-color: #{mat.get-color-from-palette($background-palette, default)};
+    color: #{mat.get-color-from-palette($foreground-palette, default)};
+    font-family: #{$font-family};
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 }
 
-// Apply the default theme
-@include food-app-theme($food-app-light-theme);
+// Apply the themes (light/dark) using body class names
+@include food-app-theme($food-app-light-theme, 'light-theme');
+@include food-app-theme($food-app-dark-theme, 'dark-theme');

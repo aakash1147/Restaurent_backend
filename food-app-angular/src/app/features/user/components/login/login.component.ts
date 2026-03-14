@@ -12,6 +12,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { LoadingService } from '../../../../core/services/loading.service';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-login',
@@ -58,6 +59,10 @@ export class LoginComponent implements OnInit {
 
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
+  }
+
+  signInWith(provider: 'google' | 'facebook'): void {
+    window.location.href = `${environment.apiUrl}/auth/${provider}`;
   }
 
   onSubmit(): void {

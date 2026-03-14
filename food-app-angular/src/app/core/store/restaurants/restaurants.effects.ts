@@ -7,8 +7,11 @@ import * as RestaurantActions from './restaurants.actions';
 
 @Injectable()
 export class RestaurantEffects {
-  private readonly actions$ = inject(Actions);
-  private readonly restaurantService = inject(RestaurantService);
+  private get actions$(): Actions {
+    return inject(Actions);
+  }
+
+  constructor(private readonly restaurantService: RestaurantService) {}
 
   loadRestaurants$ = createEffect(() =>
     this.actions$.pipe(

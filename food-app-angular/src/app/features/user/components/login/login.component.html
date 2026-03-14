@@ -1,86 +1,93 @@
-<div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-header class="login-header">
-      <mat-card-title>Sign In</mat-card-title>
-      <mat-card-subtitle>Welcome back to Food App</mat-card-subtitle>
-    </mat-card-header>
+<div class="auth-page">
+  <aside class="auth-side">
+    <div class="auth-aside-inner">
+      <div class="brand">
+        <div class="brand-logo">MUNCHBOX</div>
+        <h2 class="brand-heading">Welcome back!</h2>
+        <p class="brand-subtitle">
+          Sign in to continue to your Food App account and access your favorites.
+        </p>
+      </div>
+    </div>
+  </aside>
 
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <!-- Email Field -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email Address</mat-label>
-          <input
-            matInput
-            type="email"
-            formControlName="email"
-            placeholder="Enter your email"
-            autocomplete="email"
-          />
-          <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="getEmailError()">
-            {{ getEmailError() }}
-          </mat-error>
-        </mat-form-field>
+  <main class="auth-content">
+    <div class="auth-card-wrapper">
+      <mat-card class="auth-card">
+        <mat-card-header class="auth-header">
+          <mat-card-title>Sign in</mat-card-title>
+          <mat-card-subtitle>Welcome back to Food App</mat-card-subtitle>
+        </mat-card-header>
 
-        <!-- Password Field -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Password</mat-label>
-          <input
-            matInput
-            [type]="hidePassword ? 'password' : 'text'"
-            formControlName="password"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-          />
-          <button
-            mat-icon-button
-            matSuffix
-            (click)="togglePasswordVisibility()"
-            type="button"
-            class="toggle-password"
-          >
-            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-          </button>
-          <mat-error *ngIf="getPasswordError()">
-            {{ getPasswordError() }}
-          </mat-error>
-        </mat-form-field>
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email Address</mat-label>
+              <input
+                matInput
+                type="email"
+                formControlName="email"
+                placeholder="Email Id"
+                autocomplete="email"
+              />
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="getEmailError()">
+                {{ getEmailError() }}
+              </mat-error>
+            </mat-form-field>
 
-        <!-- Remember Me & Forgot Password -->
-        <div class="remember-forgot">
-          <mat-checkbox formControlName="rememberMe" class="remember-me">
-            Remember me
-          </mat-checkbox>
-          <a routerLink="/auth/forgot-password" class="forgot-password">
-            Forgot Password?
-          </a>
-        </div>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password"
+                placeholder="Password"
+                autocomplete="current-password"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="togglePasswordVisibility()"
+                type="button"
+                class="toggle-password"
+              >
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <mat-error *ngIf="getPasswordError()">
+                {{ getPasswordError() }}
+              </mat-error>
+            </mat-form-field>
 
-        <!-- Sign In Button -->
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          class="full-width login-button"
-          [disabled]="isLoading || loginForm.invalid"
-        >
-          <mat-icon *ngIf="!isLoading">login</mat-icon>
-          <span *ngIf="!isLoading">Sign In</span>
-          <mat-spinner
-            *ngIf="isLoading"
-            diameter="24"
-            class="button-spinner"
-          ></mat-spinner>
-          <span *ngIf="isLoading">Signing in...</span>
-        </button>
+            <mat-checkbox formControlName="rememberMe" class="remember-checkbox">
+              Keep me signed in
+            </mat-checkbox>
 
-        <!-- Sign Up Link -->
-        <div class="signup-link">
-          <span>Don't have an account?</span>
-          <a routerLink="/auth/register" class="link">Sign Up</a>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              class="auth-submit"
+              [disabled]="isLoading || loginForm.invalid"
+            >
+              <mat-icon *ngIf="!isLoading">login</mat-icon>
+              <span *ngIf="!isLoading">Sign in</span>
+              <mat-spinner
+                *ngIf="isLoading"
+                diameter="24"
+                class="button-spinner"
+              ></mat-spinner>
+              <span *ngIf="isLoading">Signing in...</span>
+            </button>
+
+
+            <div class="signup-link">
+              <span>Don't have an account?</span>
+              <a routerLink="/auth/register" class="link">Sign up</a>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </main>
 </div>

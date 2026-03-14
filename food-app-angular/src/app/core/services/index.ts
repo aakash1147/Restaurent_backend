@@ -9,3 +9,4 @@ export * from './payment.service';
 export * from './promotion.service';
 export * from './notification.service';
 export * from './user-preference.service';
+export * from './theme.service';
