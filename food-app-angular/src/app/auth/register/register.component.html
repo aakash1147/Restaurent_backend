@@ -2,21 +2,29 @@
   <mat-card class="auth-card">
     <h2>Create account</h2>
     <form [formGroup]="form" (ngSubmit)="submit()">
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" />
-        <mat-error *ngIf="firstName?.hasError('required') && (firstName?.touched || firstName?.dirty)">First name is required</mat-error>
-        <mat-error *ngIf="firstName?.hasError('minlength') && (firstName?.touched || firstName?.dirty)">Minimum 2 characters</mat-error>
-        <mat-error *ngIf="firstName?.hasError('pattern') && (firstName?.touched || firstName?.dirty)">Only letters, spaces, hyphens and apostrophes allowed</mat-error>
-      </mat-form-field>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" />
+            <mat-error *ngIf="firstName?.hasError('required') && (firstName?.touched || firstName?.dirty)">First name is required</mat-error>
+            <mat-error *ngIf="firstName?.hasError('minlength') && (firstName?.touched || firstName?.dirty)">Minimum 2 characters</mat-error>
+            <mat-error *ngIf="firstName?.hasError('pattern') && (firstName?.touched || firstName?.dirty)">Only letters, spaces, hyphens and apostrophes allowed</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" />
+            <mat-error *ngIf="lastName?.hasError('required') && (lastName?.touched || lastName?.dirty)">Last name is required</mat-error>
+            <mat-error *ngIf="lastName?.hasError('minlength') && (lastName?.touched || lastName?.dirty)">Minimum 2 characters</mat-error>
+            <mat-error *ngIf="lastName?.hasError('pattern') && (lastName?.touched || lastName?.dirty)">Only letters, spaces, hyphens and apostrophes allowed</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
 
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" />
-        <mat-error *ngIf="lastName?.hasError('required') && (lastName?.touched || lastName?.dirty)">Last name is required</mat-error>
-        <mat-error *ngIf="lastName?.hasError('minlength') && (lastName?.touched || lastName?.dirty)">Minimum 2 characters</mat-error>
-        <mat-error *ngIf="lastName?.hasError('pattern') && (lastName?.touched || lastName?.dirty)">Only letters, spaces, hyphens and apostrophes allowed</mat-error>
-      </mat-form-field>
+
+
 
       <mat-form-field appearance="outline" class="full">
         <mat-label>User Type</mat-label>
