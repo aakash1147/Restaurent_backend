@@ -1,0 +1,5 @@
+.app-header { display: flex; align-items: center; }
+.app-header .left { flex: 1; }
+.app-header .center { display: flex; gap: 8px; }
+.app-header .right { margin-left: auto; }
+.brand { font-weight: 700; font-size: 1.1rem; cursor: pointer; }
