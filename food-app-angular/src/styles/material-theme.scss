@@ -1,0 +1,102 @@
+@use 'sass:map';
+@use '@angular/material/core/m2' as mat;
+@use '@angular/material/core/theming/all-theme' as matTheme;
+
+// =============================================
+// 1) Palette configuration
+// =============================================
+$primary-palette: mat.define-palette(mat.$indigo-palette, 600, 300, 800);
+$accent-palette: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+// Custom background palette (used for surface/background colors)
+$background-palette: ( 
+  default: #fafafa,
+  hover: #f5f5f5,
+  card: #ffffff,
+  dialog: #ffffff,
+  disabled-button: #f1f1f1,
+  raised-button: #f5f5f5,
+  focused-button: #eaeaea,
+  selected-button: #e0e0e0,
+  selected-disabled-button: #e0e0e0,
+  disabled-button-toggle: #f5f5f5,
+);
+
+// =============================================
+// 2) Typography configuration
+// =============================================
+$font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+
+$food-app-typography: mat.define-typography-config(
+  $font-family: $font-family,
+  $headline-1: mat.define-typography-level(96px, 112px, 300),
+  $headline-2: mat.define-typography-level(60px, 72px, 300),
+  $headline-3: mat.define-typography-level(48px, 56px, 400),
+  $headline-4: mat.define-typography-level(34px, 40px, 400),
+  $headline-5: mat.define-typography-level(24px, 32px, 400),
+  $headline-6: mat.define-typography-level(20px, 32px, 500),
+  $subtitle-1: mat.define-typography-level(16px, 24px, 400),
+  $subtitle-2: mat.define-typography-level(14px, 24px, 500),
+  $body-1: mat.define-typography-level(16px, 24px, 400),
+  $body-2: mat.define-typography-level(14px, 20px, 400),
+  $button: mat.define-typography-level(14px, 14px, 500),
+  $caption: mat.define-typography-level(12px, 20px, 400),
+  $overline: mat.define-typography-level(10px, 16px, 500)
+);
+
+// =============================================
+// 3) Theme definition (light + dark)
+// =============================================
+$food-app-light-theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+    background: $background-palette,
+  ),
+  typography: $food-app-typography,
+  density: 0,
+));
+
+$food-app-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+    background: mat.define-palette(mat.$grey-palette, 900),
+  ),
+  typography: $food-app-typography,
+  density: -1,
+));
+
+// =============================================
+// 4) Helper mixin (CSS variables + component theming)
+// =============================================
+@mixin food-app-theme($theme) {
+  // Material component theme
+  @include matTheme.all-component-themes($theme);
+
+  // Custom app-level variables (optional)
+  $color-config: mat.get-color-config($theme);
+  $primary-palette: map.get($color-config, primary);
+  $accent-palette: map.get($color-config, accent);
+  $warn-palette: map.get($color-config, warn);
+  $background-palette: map.get($color-config, background);
+  $foreground-palette: map.get($color-config, foreground);
+
+  :root {
+    --app-primary: #{mat.get-color-from-palette($primary-palette, 500)};
+    --app-accent: #{mat.get-color-from-palette($accent-palette, 200)};
+    --app-warn: #{mat.get-color-from-palette($warn-palette, 500)};
+  }
+
+  body {
+    background-color: mat.get-color-from-palette($background-palette, default);
+    color: mat.get-color-from-palette($foreground-palette, default);
+    font-family: $font-family;
+  }
+}
+
+// Apply the default theme
+@include food-app-theme($food-app-light-theme);

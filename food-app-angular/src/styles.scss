@@ -5,8 +5,8 @@
 // Import Bootstrap (Sass module system)
 @use 'bootstrap' as *;
 
-// Import Angular Material Prebuilt Theme
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+// Import custom Angular Material theme
+@use './styles/material-theme';
 
 // Material Design Fonts
 @import 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap';
